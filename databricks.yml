@@ -6,10 +6,9 @@ resources:
     claude-chat:
       name: claude-chat
       description: "Streamlit chat app powered by the claude_45 serving endpoint"
-      source_code_path: .
       git_source:
-        url: https://github.com/O-Faraday/databricks_first_app
-        branch: main
+        git_url: https://github.com/O-Faraday/databricks_first_app
+        git_branch: main
       resources:
         - name: claude-serving-endpoint
           serving_endpoint:
