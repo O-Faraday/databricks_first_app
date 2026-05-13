@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 from databricks.sdk import WorkspaceClient
+from databricks.sdk.service.serving import ChatMessage, ChatMessageRole
 
 ENDPOINT_NAME = os.environ.get("SERVING_ENDPOINT", "claude_45")
 
@@ -15,9 +16,16 @@ def get_client() -> WorkspaceClient:
 
 def query_endpoint(messages: list[dict]) -> str:
     client = get_client()
+    chat_messages = [
+        ChatMessage(
+            role=ChatMessageRole(m["role"]),
+            content=m["content"]
+        )
+        for m in messages
+    ]
     response = client.serving_endpoints.query(
         name=ENDPOINT_NAME,
-        messages=messages,
+        messages=chat_messages,
     )
     return response.choices[0].message.content
 
