@@ -8,4 +8,4 @@ env:
   - name: STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION
     value: "false"
   - name: SERVING_ENDPOINT
-    value: "claude_45"
+    value: "databricks-gpt-oss-120b"
