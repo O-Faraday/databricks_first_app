@@ -3,7 +3,7 @@ bundle:
 
 variables:
   serving_endpoint_name:
-    default: databricks-gpt-oss-120b
+    default: claude_45
     description: "Nom du serving endpoint du modèle"
 
 resources:
