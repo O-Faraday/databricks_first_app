@@ -1,6 +1,11 @@
 bundle:
   name: databricks-first-app
 
+variables:
+  serving_endpoint_name:
+    default: claude_45
+    description: "Nom du serving endpoint du modèle"
+
 resources:
   apps:
     claude-chat:
@@ -14,20 +19,8 @@ resources:
       resources:
         - name: claude-serving-endpoint
           serving_endpoint:
-            name: claude_45
+            name: ${var.serving_endpoint_name}
             permission: CAN_QUERY
-      config:
-        command:
-          - streamlit
-          - run
-          - app.py
-        env:
-          - name: STREAMLIT_SERVER_ENABLE_CORS
-            value: "false"
-          - name: STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION
-            value: "false"
-          - name: SERVING_ENDPOINT
-            value: "claude_45"
 
 targets:
   dev:

@@ -7,7 +7,9 @@ from databricks.sdk.service.serving import ChatMessage, ChatMessageRole
 # Configuration
 # Read the serving endpoint name from the environment variable set in app.yaml.
 # Falls back to "claude_45" if the variable is not set (e.g. when running locally).
-ENDPOINT_NAME = os.environ.get("SERVING_ENDPOINT", "claude_45")
+ENDPOINT_NAME = os.environ.get("SERVING_ENDPOINT")
+if not ENDPOINT_NAME:
+    raise ValueError("SERVING_ENDPOINT environment variable is not set")
 
 # ---------------------------------------------------------------------------
 # Page setup
